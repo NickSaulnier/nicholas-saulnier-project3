@@ -1,0 +1,47 @@
+.icon {
+    font-size: 40px !important;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.icon-button {
+    margin-left: 10px;
+}
+
+.user-option {
+    margin-right: 20px;
+}
+
+.logout-button {
+    margin-left: 15px;
+}
+
+#user-display {
+    font-family: "Georgia";
+    font-size: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-button {
+    color: black;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid black;
+    padding: 8px;
+    width: 75px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-button:hover {
+    opacity: .8;
+}
