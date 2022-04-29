@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Box from '@mui/material/Box';
@@ -19,6 +19,8 @@ export default function NavBar() {
     const [loggedIn, setLoggedIn] = useState(true);
     const [userName, setUserName] = useState("Nick");
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    let navigate = useNavigate();
+    const location = useLocation();
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -32,13 +34,23 @@ export default function NavBar() {
         setLoggedIn(false);
         setUserName("");
         setAnchorElUser(null);
+        if (location.pathname === "/ReviewForm") {
+            navigate("/", { replace: true });
+        }
     };
 
     return(
         <AppBar position="static" style={{ backgroundColor: "black", width: "100%", margin: "0" }}>
             <Toolbar disableGutters style={{ marginLeft: "20px" }}>
-                <Typography variant="h6" noWrap component="div" fontFamily="Georgia" mr={4} fontSize={26}>
-                    SMDB
+                <Typography 
+                    id="stamp-text" 
+                    variant="h6" 
+                    noWrap 
+                    component="div" 
+                    fontFamily="Georgia" 
+                    mr={4} 
+                    fontSize={26}>
+                        SMDB
                 </Typography>
                 <Divider orientation="vertical" flexItem color="white" variant="middle" />
                 <Box sx={{ flexGrow: 1 }}>
@@ -69,8 +81,7 @@ export default function NavBar() {
                             <IconButton className="icon-button" onClick={handleOpenUserMenu}>
                                 <ArrowDropDownIcon className="icon" />
                             </IconButton>
-                            <Menu
-                                sx={{ mt: '45px' }}
+                            <Menu sx={{ mt: '45px' }}
                                 anchorEl={anchorElUser}
                                 keepMounted
                                 anchorOrigin={{

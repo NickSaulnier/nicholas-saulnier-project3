@@ -1,0 +1,38 @@
+.review-row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 80px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.review-row-container:hover {
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.review-row-icon {
+    font-size: 60px;
+}
+
+.icon-container {
+    background-color: #F5DE50;
+    height: 100%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.review-row-title {
+    font-family: "Georgia";
+    margin-left: 10px;
+}
+
+.margin-right-10px {
+    margin-right: 10px;
+}
