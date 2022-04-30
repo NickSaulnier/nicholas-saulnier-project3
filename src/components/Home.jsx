@@ -13,9 +13,9 @@ export default function Home() {
     ]);
 
     return(
-        <div id="page-container">
+        <div id="home-page-container">
             <h1 id="page-header">Movie Reviews</h1>
-            <div id="review-container">
+            <div id="review-list-container">
                 {
                     reviews.map((review, index) => (
                         <ReviewRow title={review.title} 

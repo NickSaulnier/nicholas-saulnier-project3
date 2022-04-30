@@ -26,7 +26,7 @@ const ReviewForm = props => {
             </div>
             <h2 className="review-row-title">{prettyTitle()}</h2>
             <Box sx={{ flexGrow: 1 }} />
-            <h3 className="margin-right-10px">{props.user}</h3>
+            <h3 className="margin-right-10px username-display">{props.user}</h3>
         </div>
     );
 }

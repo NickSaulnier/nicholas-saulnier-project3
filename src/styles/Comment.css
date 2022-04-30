@@ -1,0 +1,39 @@
+.comment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.comment-header-field {
+    margin-bottom: 2px;
+    margin-right: 10px;
+    font-family: "Georgia";
+}
+
+.comment-header-major {
+    font-weight: 400;
+}
+
+.comment-header-minor {
+    font-weight: 400;
+    color: gray;
+}
+
+.comment-content {
+    font-family: "Georgia";
+    font-weight: 100;
+    white-space: pre-wrap;
+    margin: 10px;
+}

@@ -49,7 +49,8 @@ export default function ReviewForm() {
                 <TextField multiline 
                     fullWidth 
                     label="Write review here..." 
-                    rows={16} value={reviewInput} 
+                    rows={16} 
+                    value={reviewInput} 
                     onChange={(event) => {setReviewInput(event.target.value)}}/>
                 <div id="attributes-container">
                     <Box sx={{ flexGrow: 1 }}>

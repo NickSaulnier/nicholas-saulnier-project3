@@ -1,4 +1,4 @@
-#page-container {
+#home-page-container {
     width: 100%;
     height: 90vh;
     display: flex;
@@ -14,7 +14,29 @@
     font-weight: 300;
 }
 
-#review-container {
+#review-list-container {
     margin-top: 20px;
     width: 900px;
+}
+
+@media(max-width: 950px) { 
+    #review-list-container {
+        width: 700px;
+    }
+}
+
+@media(max-width: 750px) { 
+    #review-list-container {
+        width: 500px;
+    }
+
+    #page-header {
+        font-size: 36px;
+    }
+}
+
+@media(max-width: 520px) { 
+    #review-list-container {
+        width: 300px;
+    }
 }

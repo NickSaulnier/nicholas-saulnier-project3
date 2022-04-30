@@ -1,0 +1,143 @@
+#review-page-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#review-container {
+    margin-top: 10px;
+    width: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+#review-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    font-family: "Georgia";
+    background-color: lightgray;
+}
+
+#add-comment-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 900px; 
+}
+
+#comment-button {
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 10px;
+}
+
+#comment-button:hover:enabled {
+    opacity: .8;
+    text-decoration: underline;
+}
+
+#comment-button:disabled {
+    background-color: lightgray;
+    opacity: .6;
+}
+
+#comment-button:disabled {
+    background-color: lightgray;
+    opacity: .6;
+}
+
+#comments-container {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 900px; 
+}
+
+.comment-container {
+    width: 100%;
+}
+
+#comment-container-header {
+    font-family: "Georgia";
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.header-field {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.header-field-major {
+    font-weight: 600;
+}
+
+.header-field-minor {
+    font-weight: 300;
+}
+
+.review-content {
+    margin: 20px;
+    font-family: "Georgia";
+    font-weight: 100;
+    white-space: pre-wrap;
+}
+
+@media(max-width: 950px) { 
+    #review-container {
+        width: 700px;
+    }
+
+    #add-comment-container {
+        width: 700px; 
+    }
+
+    #comments-container {
+        width: 700px; 
+    }
+}
+
+@media(max-width: 750px) { 
+    #review-container {
+        width: 500px;
+    }
+
+    #add-comment-container {
+        width: 500px; 
+    }
+
+    #comments-container {
+        width: 500px; 
+    }
+}
+
+@media(max-width: 520px) { 
+    #review-container {
+        width: 310px;
+    }
+
+    #add-comment-container {
+        width: 310px; 
+    }
+
+    #comments-container {
+        width: 310px; 
+    }
+}
