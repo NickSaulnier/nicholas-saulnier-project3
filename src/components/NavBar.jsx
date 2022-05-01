@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Box from '@mui/material/Box';
@@ -16,8 +17,7 @@ import Typography from '@mui/material/Typography';
 import '../styles/NavBar.css'
 
 export default function NavBar() {
-    const [loggedIn, setLoggedIn] = useState(true);
-    const [userName, setUserName] = useState("Nick");
+    const [userName, setUserName] = useState("");
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     let navigate = useNavigate();
     const location = useLocation();
@@ -31,13 +31,25 @@ export default function NavBar() {
     };
 
     const handleLogout = () => {
-        setLoggedIn(false);
-        setUserName("");
-        setAnchorElUser(null);
-        if (location.pathname === "/ReviewForm") {
-            navigate("/", { replace: true });
-        }
+        Axios.post("/api/user/logout")
+            .then(response => {
+                setUserName("");
+                setAnchorElUser(null);
+                if (location.pathname === "/ReviewForm") {
+                    navigate("/", { replace: true });
+                }
+            })
+            .catch(error => console.log(error))
     };
+
+    useEffect(() => {
+        Axios.get('/api/user/isLoggedIn')
+            .then(response => {
+                console.log('logged in');
+                setUserName(response.data.username);
+            })
+            .catch(error => console.log("User is not logged in"))
+    }, []);
 
     return(
         <AppBar position="static" style={{ backgroundColor: "black", width: "100%", margin: "0" }}>
@@ -62,7 +74,7 @@ export default function NavBar() {
                         </Link>
                     </Tooltip>
                     { 
-                        loggedIn ?
+                        userName ?
                             <Tooltip title="Write Review" placement="bottom-end">
                                 <Link to="/ReviewForm">
                                     <IconButton className="icon-button">
@@ -75,7 +87,7 @@ export default function NavBar() {
                     }
                 </Box>
                 {
-                    loggedIn ? 
+                    userName ? 
                         <div id="user-display" className="user-option">
                             {userName}
                             <IconButton className="icon-button" onClick={handleOpenUserMenu}>

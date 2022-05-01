@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
@@ -14,24 +16,47 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function ReviewForm() {
-    const [titleInput, setTitleInput] = useState("");
-    const [reviewInput, setReviewInput] = useState("");
-    const [yearInput, setYearInput] = useState();
-    const [directorInput, setDirectorInput] = useState("");
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
+    const [year, setYear] = useState();
+    const [director, setDirector] = useState("");
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
+    let navigate = useNavigate();
 
     const handleSubmit = () => {
-        if (!titleInput) {
-            setSnackbarMessage("Error: reviews need a title!");
-            setSnackbarOpen(true);
-        }
-        else if (!reviewInput) {
-            setSnackbarMessage("Error: reviews need a review!");
-            setSnackbarOpen(true);
-        } else {
-            // put request logic
-        }
+        Axios.get('/api/user/isLoggedIn')
+            .then(loggedInResponse => {
+                const username = loggedInResponse.data.username;
+                if (!title) {
+                    setSnackbarMessage("Error: reviews need a title!");
+                    setSnackbarOpen(true);
+                }
+                else if (!content) {
+                    setSnackbarMessage("Error: reviews need a review!");
+                    setSnackbarOpen(true);
+                } else {
+                    const review = {
+                        title: title,
+                        content: content,
+                        year: year,
+                        director: director,
+                        username: username,
+                        timestamp: Date.now(),
+                        comments: [],
+                    };
+
+                    Axios.post('/api/movieReviews/', review)
+                        .then(postReviewResponse => {
+                            console.log("Created review");
+                            navigate("/ReviewPage?reviewId=" + postReviewResponse.data._id, { replace: true });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+            })
+            .catch(error => console.log("User is not logged in"))
     };
 
     function handleSnackbarClose() {
@@ -44,27 +69,27 @@ export default function ReviewForm() {
                 <TextField fullWidth 
                     label="Movie Title" 
                     margin="normal" 
-                    value={titleInput} 
-                    onChange={(event) => {setTitleInput(event.target.value)}}/>
+                    value={title} 
+                    onChange={(event) => {setTitle(event.target.value)}}/>
                 <TextField multiline 
                     fullWidth 
                     label="Write review here..." 
                     rows={16} 
-                    value={reviewInput} 
-                    onChange={(event) => {setReviewInput(event.target.value)}}/>
+                    value={content} 
+                    onChange={(event) => {setContent(event.target.value)}}/>
                 <div id="attributes-container">
                     <Box sx={{ flexGrow: 1 }}>
                         <TextField type="number" 
                             style={{ marginRight: "8px" }} 
                             label="Release Year" 
                             margin="normal" 
-                            value={yearInput} 
-                            onChange={(event) => {setYearInput(event.target.value)}}/>
+                            value={year} 
+                            onChange={(event) => {setYear(event.target.value)}}/>
                         <TextField style={{ marginRight: "10px" }} 
                             label="Director" 
                             margin="normal" 
-                            value={directorInput} 
-                            onChange={(event) => {setDirectorInput(event.target.value)}}/>
+                            value={director} 
+                            onChange={(event) => {setDirector(event.target.value)}}/>
                     </Box>
                     <button id="submit-button" onClick={handleSubmit}>Submit</button>
                 </div>

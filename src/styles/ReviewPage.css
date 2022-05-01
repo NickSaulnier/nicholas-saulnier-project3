@@ -29,6 +29,13 @@
     background-color: lightgray;
 }
 
+#content-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row; 
+}
+
 #add-comment-container {
     margin-top: 20px;
     margin-bottom: 20px;
