@@ -56,7 +56,7 @@ export default function ReviewForm() {
                         })
                 }
             })
-            .catch(error => console.log("User is not logged in"))
+            .catch(error => console.log(error))
     };
 
     function handleSnackbarClose() {
@@ -91,7 +91,11 @@ export default function ReviewForm() {
                             value={director} 
                             onChange={(event) => {setDirector(event.target.value)}}/>
                     </Box>
-                    <button id="submit-button" onClick={handleSubmit}>Submit</button>
+                    <button id="submit-button" 
+                        onClick={handleSubmit} 
+                        disabled={!title || !content}>
+                            Submit
+                    </button>
                 </div>
             </div>
             <Snackbar open={snackbarOpen} 

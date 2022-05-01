@@ -12,7 +12,6 @@ import Register from './Register';
 import '../styles/App.css'
 
 export default function App() {
-
     return (
         <div id='app-container'>
             <BrowserRouter>

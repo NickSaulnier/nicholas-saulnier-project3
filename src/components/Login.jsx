@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import TextField from '@mui/material/TextField';
 
-import '../styles/Login.css'
+import '../styles/Login.css';
+
+const AUTO_HIDE_DURATION = 3000;
+
+// Source: https://mui.com/components/snackbars/
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordMask, setPasswordMask] = useState("");
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState("");
     let navigate = useNavigate();
 
     function handleUsernameInput(event) {
@@ -42,7 +53,13 @@ export default function Login(props) {
             })
             .catch(error => { 
                 console.log(error); 
+                setSnackbarMessage("Invalid username or password");
+                setSnackbarOpen(true);
             });
+    }
+
+    function handleSnackbarClose() {
+        setSnackbarOpen(false);
     }
 
     return(
@@ -59,6 +76,14 @@ export default function Login(props) {
             <Link to="/Register">
                 <button id="register-button">Register new account</button>
             </Link>
+            <Snackbar open={snackbarOpen} 
+                      autoHideDuration={AUTO_HIDE_DURATION} 
+                      onClose={handleSnackbarClose} 
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} >
+                <Alert severity="error" sx={{ width: '100%' }}>
+                    {snackbarMessage}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }

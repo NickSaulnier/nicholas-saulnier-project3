@@ -38,6 +38,7 @@ export default function NavBar() {
                 if (location.pathname === "/ReviewForm") {
                     navigate("/", { replace: true });
                 }
+                window.location.reload(false);
             })
             .catch(error => console.log(error))
     };

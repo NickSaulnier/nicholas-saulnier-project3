@@ -10,7 +10,8 @@ const ReviewForm = props => {
 
     function prettyTitle() {
         const MAX_LENGTH = 30;
-        let title = props.title + ' (' + props.year + ')';
+        const yearField = props.year ? ' (' + props.year + ')' : "";
+        let title = props.title + yearField;
         title = title.length > MAX_LENGTH ? title.substring(0, MAX_LENGTH) + "..." : title;
         return title;
     }

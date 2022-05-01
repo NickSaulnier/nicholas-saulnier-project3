@@ -14,6 +14,12 @@
     font-weight: 300;
 }
 
+#review-empty-header {
+    font-family: "Georgia";
+    font-size: 36px;
+    font-weight: 300;
+}
+
 #review-list-container {
     margin-top: 20px;
     width: 900px;
